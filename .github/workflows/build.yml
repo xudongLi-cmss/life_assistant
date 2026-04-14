@@ -66,22 +66,13 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
-    - name: Setup Gradle Wrapper
+    - name: Fix Android Project
       run: |
-        cd android
-        chmod +x gradlew
-        chmod +x ../.github/scripts/fix-gradle-wrapper.sh
-        ../.github/scripts/fix-gradle-wrapper.sh || {
-          echo "Gradle wrapper setup failed, attempting to use Flutter to fix Android project..."
-          cd ..
-          chmod +x .github/scripts/fix-android-project.sh
-          .github/scripts/fix-android-project.sh
-        }
-        # Verify gradle wrapper is set up correctly
-        cd android
-        ls -la gradle/wrapper/
-        test -f gradle/wrapper/gradle-wrapper.jar && echo "gradle-wrapper.jar exists" || echo "gradle-wrapper.jar missing"
-        ./gradlew --version
+        echo "Backing up current Android configuration..."
+        cp -r android android_backup || true
+        echo "Regenerating Android project with Flutter..."
+        flutter create --org com.example --project-name life_assistant . --android-language kotlin
+        echo "Android project regenerated"
 
     - name: Build APK
       run: |
