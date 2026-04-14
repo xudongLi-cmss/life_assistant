@@ -1,0 +1,19 @@
+{
+  // Flutter SDK 路径配置
+  // 解压Flutter后，修改下面的路径为实际路径
+  "dart.flutterSdkPath": "D:\\flutter",
+
+  // 或者使用相对路径（如果Flutter在项目目录中）
+  // "dart.flutterSdkPath": "${workspaceFolder}/../flutter",
+
+  // 其他推荐设置
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "dart.lineLength": 100,
+
+  // Flutter相关
+  "flutter.autoOpenDevTools": "onTop",
+  "flutter.sdkPath": "D:\\flutter"
+}
