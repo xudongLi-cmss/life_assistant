@@ -68,8 +68,14 @@ jobs:
 
     - name: Setup Gradle Wrapper
       run: |
-        chmod +x .github/scripts/fix-gradle-wrapper.sh
-        .github/scripts/fix-gradle-wrapper.sh
+        cd android
+        chmod +x gradlew
+        chmod +x ../.github/scripts/fix-gradle-wrapper.sh
+        ../.github/scripts/fix-gradle-wrapper.sh
+        # Verify gradle wrapper is set up correctly
+        ls -la gradle/wrapper/
+        test -f gradle/wrapper/gradle-wrapper.jar && echo "gradle-wrapper.jar exists" || echo "gradle-wrapper.jar missing"
+        ./gradlew --version
 
     - name: Build APK
       run: |
