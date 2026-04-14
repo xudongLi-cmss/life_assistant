@@ -66,14 +66,6 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
-    - name: Fix Android Project
-      run: |
-        echo "Backing up current Android configuration..."
-        cp -r android android_backup || true
-        echo "Regenerating Android project with Flutter..."
-        flutter create --org com.example --project-name life_assistant . --android-language kotlin
-        echo "Android project regenerated"
-
     - name: Build APK
       run: |
         flutter build apk --release
